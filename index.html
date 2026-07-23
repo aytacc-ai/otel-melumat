@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tac - Ultra Luxury 5 Star Hotel & Resort</title>
+  <meta name="description" content="Tac 5 ulduzlu ultra-lüks hotel. Eksklüziv otaqlar, VIP transfer, xüsusi restoranlar və unudulmaz tədbirlər üçün rəsmi bron sistemi.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header class="header" id="main-header">
+    <div class="container header-inner">
+      <a href="#hero" class="brand-logo">
+        <svg class="crown-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/>
+        </svg>
+        <div>
+          <span class="brand-name">TAC</span>
+          <span class="brand-subtitle">HOTEL & RESORT</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="#hero" class="nav-link">Ana Səhifə</a></li>
+        <li><a href="#discover" class="nav-link">Kəşf Et</a></li>
+        <li><a href="#transfer" class="nav-link">VIP Transfer</a></li>
+        <li><a href="#offers" class="nav-link">Təkliflər & Loyallıq</a></li>
+        <li><a href="#contact" class="nav-link">Əlaqə</a></li>
+      </ul>
+
+      <div class="header-actions">
+        <button class="user-badge-btn" id="user-profile-btn" onclick="openAuthModal()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span id="user-badge-text">Giriş / Qeydiyyat</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <img src="./assets/tac_hotel_hero.jpg" alt="Tac Luxury Hotel Exterior" class="hero-bg">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"/></svg>
+        <span>5 Ulduzlu Ultra-Lüks Təcrübə</span>
+      </div>
+      <h1 class="hero-title">Lüksün və Eksklüzivliyin <br><span class="gold-text">Ən Yüksək Zirvəsi</span></h1>
+      <p class="hero-subtitle">Xüsusi dizayn edilmiş royal suitlər, michelin ulduzlu təamlar və misilsiz VIP xidmətlərlə krallara layiq istirahəti yaşayın.</p>
+      <div class="hero-cta">
+        <a href="#discover" class="btn btn-primary">Kəşf Et</a>
+        <a href="#transfer" class="btn btn-outline">VIP Transfer Xidməti</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Availability & Price Calculator -->
+  <div class="container calc-wrapper" id="hero-calc">
+    <div class="calc-bar">
+      <div class="calc-grid">
+        
+        <!-- Check-in & Check-out Dates -->
+        <div class="calc-group">
+          <label class="calc-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Giriş Tarixi
+          </label>
+          <input type="date" class="calc-input" id="checkin-date" onchange="calculatePrice()">
+        </div>
+
+        <div class="calc-group">
+          <label class="calc-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Çıxış Tarixi
+          </label>
+          <input type="date" class="calc-input" id="checkout-date" onchange="calculatePrice()">
+        </div>
+
+        <!-- Room Type -->
+        <div class="calc-group">
+          <label class="calc-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+            Otaq Növü
+          </label>
+          <select class="calc-select" id="room-type-select" onchange="calculatePrice()">
+            <option value="royal-penthouse" data-price="1200">Royal Penthouse (1200 ₼ / gecə)</option>
+            <option value="executive-suite" data-price="650" selected>Executive Suite (650 ₼ / gecə)</option>
+            <option value="crown-villa" data-price="1800">Crown Presidential Villa (1800 ₼ / gecə)</option>
+            <option value="deluxe-suite" data-price="450">Deluxe Sea View Suite (450 ₼ / gecə)</option>
+          </select>
+        </div>
+
+        <!-- Room Count Counter -->
+        <div class="calc-group">
+          <label class="calc-label">Otaq Sayı</label>
+          <div class="counter-control">
+            <button class="counter-btn" onclick="updateCounter('rooms', -1)">-</button>
+            <span class="counter-value" id="counter-rooms">1</span>
+            <button class="counter-btn" onclick="updateCounter('rooms', 1)">+</button>
+          </div>
+        </div>
+
+        <!-- Adults Counter -->
+        <div class="calc-group">
+          <label class="calc-label">Yetişkin</label>
+          <div class="counter-control">
+            <button class="counter-btn" onclick="updateCounter('adults', -1)">-</button>
+            <span class="counter-value" id="counter-adults">2</span>
+            <button class="counter-btn" onclick="updateCounter('adults', 1)">+</button>
+          </div>
+        </div>
+
+        <!-- Children Counter -->
+        <div class="calc-group">
+          <label class="calc-label">Uşaq</label>
+          <div class="counter-control">
+            <button class="counter-btn" onclick="updateCounter('children', -1)">-</button>
+            <span class="counter-value" id="counter-children">0</span>
+            <button class="counter-btn" onclick="updateCounter('children', 1)">+</button>
+          </div>
+        </div>
+
+        <!-- Action Check Button -->
+        <div class="calc-group">
+          <button class="btn btn-primary" style="width: 100%;" onclick="calculatePrice(true)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            Qiyməti Yoxla
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Checkbox Extras -->
+      <div class="extras-group">
+        <label class="custom-checkbox">
+          <input type="checkbox" id="extra-breakfast" onchange="calculatePrice()">
+          <span class="checkmark"></span>
+          <span>Səhər Yeməyi Daxil (+45 ₼ / nəfər / gecə)</span>
+        </label>
+        
+        <label class="custom-checkbox">
+          <input type="checkbox" id="extra-transfer" onchange="calculatePrice()">
+          <span class="checkmark"></span>
+          <span>VIP Hava Limanı Transferi (+120 ₼)</span>
+        </label>
+
+        <label class="custom-checkbox">
+          <input type="checkbox" id="extra-spa" onchange="calculatePrice()">
+          <span class="checkmark"></span>
+          <span>Spa & Hydrotherapy Paket (+80 ₼)</span>
+        </label>
+      </div>
+
+      <!-- Instant Calculated Result Box -->
+      <div class="calc-result-box" id="calc-result-box">
+        <div class="price-breakdown">
+          <span class="price-label">Hesablanmış Cəmi Məbləğ (<span id="calc-nights">1</span> gecə üçün)</span>
+          <span class="total-price" id="calc-total-price">650 ₼</span>
+          <span class="night-count-tag" id="calc-breakdown-text">Executive Suite • 2 Qonaq • Vergilər daxildir</span>
+        </div>
+        <button class="btn btn-primary" onclick="proceedToBookingFromCalc()">Həmən Bron Et</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Discover Section (Kəşf Et Bölməsi) -->
+  <section class="section" id="discover">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">KƏŞF ET</span>
+        <h2 class="section-title">Nadir Təcrübələr Və <span class="gold-text">Eksklüziv Seçimlər</span></h2>
+        <p class="section-desc">Tac hotelində hər anınız xüsusi zövqlə layihələndirilib. Otaqlarımız, unikal tədbirlərimiz və xüsusi menyularımızla tanış olun.</p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="filterDiscover('all')">Hamısı</button>
+        <button class="tab-btn" onclick="filterDiscover('rooms')">Otaqlar (Rooms)</button>
+        <button class="tab-btn" onclick="filterDiscover('events')">Tədbirlər (Events)</button>
+        <button class="tab-btn" onclick="filterDiscover('dining')">Xüsusi Təamlar (Dining)</button>
+      </div>
+
+      <!-- Discover Cards Grid -->
+      <div class="discover-grid" id="discover-cards-container">
+        
+        <!-- Room 1: Royal Penthouse -->
+        <div class="glass-card discover-item category-rooms" data-id="royal-penthouse">
+          <div class="card-img-wrapper">
+            <div class="panorama-badge" onclick="open360Panorama('royal-penthouse')">🔄 360° Virtual Tur</div>
+            <img src="./assets/cat.jpg" alt="Royal Penthouse" class="card-img">
+            <span class="card-price-badge">1200 ₼ / gecə</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Royal Penthouse Suite</h3>
+            <p class="card-text">Dənizə baxan panorama pəncərələr, şəxsi cakuzi, 24/7 personal butler xidməti və xüsusi terras.</p>
+            <div class="card-specs">
+              <span class="spec-item">📐 180 m²</span>
+              <span class="spec-item">🛏️ 1 King Bed</span>
+              <span class="spec-item">🌊 Panoramik Dəniz Mənzərəsi</span>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button class="btn btn-outline btn-sm" style="flex: 1;" onclick="open360Panorama('royal-penthouse')">🔄 360° Baxış</button>
+              <button class="btn btn-primary btn-sm" style="flex: 1;" onclick="openRoomDetailModal('royal-penthouse')">Ətraflı & Bron</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Room 2: Executive Suite -->
+        <div class="glass-card discover-item category-rooms" data-id="executive-suite">
+          <div class="card-img-wrapper">
+            <div class="panorama-badge" onclick="open360Panorama('executive-suite')">🔄 360° Virtual Tur</div>
+            <img src="./assets/tac_executive_suite.jpg" alt="Executive Suite" class="card-img">
+            <span class="card-price-badge">650 ₼ / gecə</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Executive Suite</h3>
+            <p class="card-text">Geniş qonaq otağı, zərif iş masası, minibar, Hermes hamam dəsti və 55" OLED smart ekran.</p>
+            <div class="card-specs">
+              <span class="spec-item">📐 95 m²</span>
+              <span class="spec-item">🛏️ 1 King Bed</span>
+              <span class="spec-item">📶 Yüksək Sürətli Wi-Fi</span>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button class="btn btn-outline btn-sm" style="flex: 1;" onclick="open360Panorama('executive-suite')">🔄 360° Baxış</button>
+              <button class="btn btn-primary btn-sm" style="flex: 1;" onclick="openRoomDetailModal('executive-suite')">Ətraflı & Bron</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event 1: Gala Concert -->
+        <div class="glass-card discover-item category-events">
+          <div class="card-img-wrapper">
+            <img src="./assets/tac_gala_event.jpg" alt="Royal Gala Event" class="card-img">
+            <span class="card-price-badge">15 Avqust 2026</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Royal Philharmonic Gala Gecəsi</h3>
+            <p class="card-text">Qızılı zalımızda simfonik orkestrin canlı ifası, şampan qarşılanması və eksklüziv şam yeməyi.</p>
+            <div class="card-specs">
+              <span class="spec-item">⏰ 20:00 - 00:00</span>
+              <span class="spec-item">📍 Grand Ballroom</span>
+            </div>
+            <button class="btn btn-primary btn-sm" style="width: 100%; margin-top: 8px;" onclick="bookEvent('Royal Philharmonic Gala Gecəsi')">Yer Saxla (250 ₼ / bilet)</button>
+          </div>
+        </div>
+
+        <!-- Dining 1: Fine Dining -->
+        <div class="glass-card discover-item category-dining">
+          <div class="card-img-wrapper">
+            <img src="./assets/tac_fine_dining.jpg" alt="La Couronne Fine Dining" class="card-img">
+            <span class="card-price-badge">Michelin Stared</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">"La Couronne" Restoranı</h3>
+            <p class="card-text">Fransız və Aralıq dənizi mətbəxinin ən zərif təamları, şefin xüsusi 24K qızıl bəzəkli menyusu.</p>
+            <div class="card-specs">
+              <span class="spec-item">🍷 Sommelier Şərab Ehtiyatı</span>
+              <span class="spec-item">⏰ 18:00 - 23:30</span>
+            </div>
+            <button class="btn btn-outline btn-sm" style="width: 100%;" onclick="bookTableModal('La Couronne')">Masa Bron Et</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VIP Transfer Service Section -->
+  <section class="section transfer-section" id="transfer">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">EKSKLÜZİV QARŞILAMA</span>
+        <h2 class="section-title">VIP Transfer <span class="gold-text">Xidməti</span></h2>
+        <p class="section-desc">Hava limanından hotelə qədər olan səyahətinizi maksimal rahatlıq və təhlükəsizliklə təmin edirik. Avtomobil sinfinizi seçin.</p>
+      </div>
+
+      <!-- Vehicle Selection Grid -->
+      <div class="transfer-grid">
+        <div class="vehicle-card" onclick="selectVehicle('economic', 60, this)">
+          <input type="radio" name="vehicle-radio" id="v-econ">
+          <img src="./assets/tac_vip_transfer.jpg" alt="Ekonom Sedan" class="vehicle-img" style="filter: grayscale(40%);">
+          <h3 class="vehicle-title">Comfort Business</h3>
+          <p class="vehicle-desc">Mercedes-Benz E-Class və ya Audi A6. Maksimum 3 sərnişin və 2 çamadan.</p>
+          <span class="vehicle-price">60 ₼ / gediş</span>
+        </div>
+
+        <div class="vehicle-card selected" onclick="selectVehicle('vip-sedan', 120, this)">
+          <input type="radio" name="vehicle-radio" id="v-vip" checked>
+          <img src="./assets/tac_vip_transfer.jpg" alt="Maybach VIP Sedan" class="vehicle-img">
+          <h3 class="vehicle-title">VIP Executive Sedan</h3>
+          <p class="vehicle-desc">Mercedes-Maybach S-Class. Şəxsi sürücü, soyudulmuş şampan, masajlı oturacaqlar.</p>
+          <span class="vehicle-price">120 ₼ / gediş</span>
+        </div>
+
+        <div class="vehicle-card" onclick="selectVehicle('minivan', 150, this)">
+          <input type="radio" name="vehicle-radio" id="v-mini">
+          <img src="./assets/tac_vip_transfer.jpg" alt="VIP Minivan" class="vehicle-img" style="filter: brightness(80%);">
+          <h3 class="vehicle-title">Family / VIP Minivan</h3>
+          <p class="vehicle-desc">Mercedes-Benz V-Class Extra Long. 6 sərnişin üçün lüks salon və geniş yük sahəsi.</p>
+          <span class="vehicle-price">150 ₼ / gediş</span>
+        </div>
+      </div>
+
+      <!-- Dynamic Required Transfer Inputs -->
+      <div class="transfer-fields-box active" id="transfer-fields">
+        <h3 class="font-serif" style="color: var(--gold-primary); margin-bottom: 20px;">Uçuş Və Qarşılama Detalları</h3>
+        <div class="calc-grid">
+          <div class="calc-group">
+            <label class="calc-label">Hava Limanının Adı *</label>
+            <input type="text" class="calc-input" id="tr-airport" placeholder="Məs: Heydər Əliyev Beynəlxalq Hava Limanı (GYD)">
+          </div>
+
+          <div class="calc-group">
+            <label class="calc-label">Uçuş Nömrəsi (Flight No) *</label>
+            <input type="text" class="calc-input" id="tr-flight" placeholder="Məs: J2 012 / TK 338">
+          </div>
+
+          <div class="calc-group">
+            <label class="calc-label">Gəliş Saatı *</label>
+            <input type="time" class="calc-input" id="tr-time">
+          </div>
+
+          <div class="calc-group">
+            <label class="calc-label">Qarşılama Lövhəsindəki Ad *</label>
+            <input type="text" class="calc-input" id="tr-name" placeholder="Məs: Mr. Elvin Əliyev">
+          </div>
+        </div>
+
+        <div style="margin-top: 20px; text-align: right;">
+          <button class="btn btn-primary" onclick="confirmVIPTransferBooking()">Transfer Xidmətini Təsdiqlə</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Offers & Gifts / Loyalty Program -->
+  <section class="section" id="offers">
+    <div class="container">
+      <div class="loyalty-card">
+        <div>
+          <span class="section-tag">LOYALLIQ PROQRAMI</span>
+          <h2 class="font-serif" style="font-size: 2.2rem; margin-bottom: 16px;">Crown Loyalty <span class="gold-text">Privileges</span></h2>
+          <p style="color: var(--text-muted); margin-bottom: 24px;">Hər bron etdiyiniz gecə üçün eksklüziv xallar qazanın. Yüksək status pillələrinə qalxaraq pulsuz spa, otaq kateqoriyasının qaldırılması və şəxsi butler xidmətindən yararlanın.</p>
+
+          <div class="loyalty-badge-row">
+            <span class="tier-badge silver">Silver Crown</span>
+            <span class="tier-badge gold">Gold Crown</span>
+            <span class="tier-badge platinum">Platinum VIP</span>
+          </div>
+        </div>
+
+        <div style="background: rgba(7, 9, 14, 0.6); padding: 24px; border-radius: var(--radius-md); border: 1px solid var(--glass-border);">
+          <h4 class="font-serif" style="color: var(--gold-light); margin-bottom: 12px;">Hədiyyə Kartları (Gift Cards)</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">Sevdiklərinizə ultra-lüks dincəlmə təcrübəsi hədiyyə edin. Rəqəmsal sertifikat birbaşa e-poçta göndərilir.</p>
+
+          <div style="display: flex; gap: 10px; margin-bottom: 16px;">
+            <button class="btn btn-outline btn-sm" onclick="selectGiftAmount(250)">250 ₼</button>
+            <button class="btn btn-outline btn-sm" onclick="selectGiftAmount(500)">500 ₼</button>
+            <button class="btn btn-primary btn-sm" onclick="selectGiftAmount(1000)">1000 ₼</button>
+          </div>
+
+          <button class="btn btn-primary" style="width: 100%;" onclick="openGiftModal()">Hədiyyə Kartı Al</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="#hero" class="brand-logo" style="margin-bottom: 16px;">
+            <svg class="crown-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg>
+            <div>
+              <span class="brand-name" style="font-size: 1.4rem;">TAC</span>
+              <span class="brand-subtitle">HOTEL & RESORT</span>
+            </div>
+          </a>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">Bakı şəhəri, Neftçilər Prospekti 108<br>Tel: +994 (12) 500 00 00<br>Email: concierge@tac-hotel.az</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Naviqasiya</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">Ana Səhifə</a></li>
+            <li><a href="#discover">Otaqlar Və Suitlər</a></li>
+            <li><a href="#transfer">VIP Transfer</a></li>
+            <li><a href="#offers">Loyallıq Proqramı</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Eksklüziv Xidmətlər</h4>
+          <ul class="footer-links">
+            <li><a href="#discover">Michelin Stared Dining</a></li>
+            <li><a href="#discover">Private Yacht Charter</a></li>
+            <li><a href="#discover">Spa & Hydrotherapy</a></li>
+            <li><a href="#discover">Helipad Transfer</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 "Tac" Ultra-Luxury Hotel & Resort. Bütün hüquqlar qorunur.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MODALS SYSTEM ================= -->
+
+  <!-- 1. Authentication Modal (Registration / Login Gate) -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeModal('auth-modal')">&times;</button>
+      
+      <div class="tabs-nav" style="margin-bottom: 24px;">
+        <button class="tab-btn active" id="tab-login-btn" onclick="switchAuthTab('login')">Daxil Ol</button>
+        <button class="tab-btn" id="tab-reg-btn" onclick="switchAuthTab('register')">Qeydiyyat</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" onsubmit="handleLogin(event)">
+        <h3 class="font-serif" style="color: var(--gold-light); margin-bottom: 16px;">Hesabınıza Daxil Olun</h3>
+        <div class="calc-group" style="margin-bottom: 16px;">
+          <label class="calc-label">E-poçt Ünvanı *</label>
+          <input type="email" class="calc-input" id="login-email" required placeholder="name@example.com">
+        </div>
+        <div class="calc-group" style="margin-bottom: 24px;">
+          <label class="calc-label">Şifrə *</label>
+          <input type="password" class="calc-input" id="login-password" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Daxil Ol</button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="register-form" style="display: none;" onsubmit="handleRegister(event)">
+        <h3 class="font-serif" style="color: var(--gold-light); margin-bottom: 16px;">Yeni Hesab Yaradın</h3>
+        <div class="calc-grid" style="grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+          <div class="calc-group">
+            <label class="calc-label">Ad *</label>
+            <input type="text" class="calc-input" id="reg-fname" required placeholder="Məs: Elvin">
+          </div>
+          <div class="calc-group">
+            <label class="calc-label">Soyad *</label>
+            <input type="text" class="calc-input" id="reg-lname" required placeholder="Məs: Əliyev">
+          </div>
+        </div>
+        <div class="calc-group" style="margin-bottom: 12px;">
+          <label class="calc-label">Telefon Nömrəsi *</label>
+          <input type="tel" class="calc-input" id="reg-phone" required placeholder="+994 (50) 123 45 67">
+        </div>
+        <div class="calc-group" style="margin-bottom: 12px;">
+          <label class="calc-label">E-poçt Ünvanı *</label>
+          <input type="email" class="calc-input" id="reg-email" required placeholder="name@example.com">
+        </div>
+        <div class="calc-group" style="margin-bottom: 24px;">
+          <label class="calc-label">Şifrə *</label>
+          <input type="password" class="calc-input" id="reg-password" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Qeydiyyatı Tamamla</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Room Detail Modal -->
+  <div class="modal-overlay" id="room-detail-modal">
+    <div class="modal-container" style="max-width: 850px;">
+      <button class="modal-close" onclick="closeModal('room-detail-modal')">&times;</button>
+      <div id="room-modal-content">
+        <!-- Injected via JavaScript dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Checkout & Payment Modal -->
+  <div class="modal-overlay" id="checkout-modal">
+    <div class="modal-container" style="max-width: 700px;">
+      <button class="modal-close" onclick="closeModal('checkout-modal')">&times;</button>
+      
+      <div id="checkout-step-details">
+        <span class="section-tag">SON MƏRHƏLƏ</span>
+        <h2 class="font-serif" style="color: var(--gold-light); margin-bottom: 20px;">Rezervasiya Və Ödəniş</h2>
+        
+        <!-- Summary Box -->
+        <div style="background: rgba(7, 9, 14, 0.6); padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--glass-border); margin-bottom: 20px;">
+          <h4 style="color: var(--gold-primary); margin-bottom: 10px;">Rezervasiya Xülasəsi</h4>
+          <p style="font-size: 0.9rem;" id="checkout-summary-text">Royal Penthouse • 3 Gecə • 2 Qonaq</p>
+          <p style="font-size: 1.3rem; font-weight: 700; color: var(--gold-light); margin-top: 10px;" id="checkout-summary-total">3600 ₼</p>
+        </div>
+
+        <!-- Special Requests Textarea -->
+        <div class="calc-group" style="margin-bottom: 24px;">
+          <label class="calc-label">Xüsusi İstəklər (Special Requests)</label>
+          <textarea class="calc-input" id="special-requests" rows="3" placeholder="Yüksək mərtəbə, tez gəliş, allergik yastıqlar və s."></textarea>
+        </div>
+
+        <!-- Credit Card Visual Preview -->
+        <div class="credit-card-preview">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="card-chip"></div>
+            <span style="font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold-primary); font-weight: 700;">TAC VIP CARD</span>
+          </div>
+          <div class="card-number-disp" id="card-num-disp">•••• •••• •••• ••••</div>
+          <div class="card-bottom-row">
+            <div>
+              <div style="font-size: 0.65rem; color: var(--text-muted);">KART SAHİBİ</div>
+              <div id="card-holder-disp" style="font-weight: 600;">AD SOYAD</div>
+            </div>
+            <div>
+              <div style="font-size: 0.65rem; color: var(--text-muted);">BİTMƏ TARİXİ</div>
+              <div id="card-exp-disp" style="font-weight: 600;">MM/YY</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Inputs -->
+        <form id="payment-form" onsubmit="processPayment(event)">
+          <div class="calc-group" style="margin-bottom: 14px;">
+            <label class="calc-label">Kartın Nömrəsi *</label>
+            <input type="text" class="calc-input" id="pay-card-num" required maxlength="19" placeholder="4532 •••• •••• ••••" oninput="formatCardNum(this)">
+          </div>
+
+          <div class="calc-grid" style="grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 24px;">
+            <div class="calc-group">
+              <label class="calc-label">Kart Sahibi *</label>
+              <input type="text" class="calc-input" id="pay-card-name" required placeholder="ELVIN ALIYEV" oninput="updateCardPreview()">
+            </div>
+            <div class="calc-group">
+              <label class="calc-label">Bitmə Tarixi *</label>
+              <input type="text" class="calc-input" id="pay-card-exp" required maxlength="5" placeholder="12/28" oninput="formatCardExp(this)">
+            </div>
+            <div class="calc-group">
+              <label class="calc-label">CVV / CVC *</label>
+              <input type="password" class="calc-input" id="pay-card-cvv" required maxlength="4" placeholder="•••">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.05rem;">
+            Ödənişi Təsdiqlə Və Bron Et (<span id="pay-btn-amount">0 ₼</span>)
+          </button>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 4. Confirmation Success Modal -->
+  <div class="modal-overlay" id="confirmation-modal">
+    <div class="modal-container" style="max-width: 600px; text-align: center;">
+      <div class="success-box">
+        <div class="success-icon-ring">✓</div>
+        <h2 class="font-serif" style="color: var(--gold-light); font-size: 1.8rem; margin-bottom: 10px;">Rezervasiya Təsdiqləndi!</h2>
+        
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Təşəkkür edirik! Ödənişiniz uğurla həyata keçirildi və bronunuz qeydə alındı.</p>
+        
+        <div class="booking-ref-badge" id="conf-ref-code">REF-TAC-84920</div>
+
+        <div style="background: rgba(212, 175, 55, 0.08); padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--glass-border); margin: 20px 0; text-align: left;">
+          <p style="font-size: 0.9rem; color: var(--text-champagne); font-weight: 500; line-height: 1.6;">
+            📩 <strong>Xüsusi Qeyd:</strong> Rezervasiya təsdiqləndi. Qeyd etdiyiniz nömrəyə SMS və zənglə geri dönüş ediləcəkdir.
+          </p>
+        </div>
+
+        <button class="btn btn-primary" onclick="closeModal('confirmation-modal')" style="width: 100%;">Bağla Və Əsas Səhifəyə Qayıt</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 360° Interactive Virtual Panorama Modal -->
+  <div class="modal-overlay" id="panorama-modal">
+    <div class="modal-container" style="max-width: 900px; padding: 24px;">
+      <button class="modal-close" onclick="closeModal('panorama-modal')">&times;</button>
+      
+      <span class="section-tag" id="pano-modal-tag">İNTERAKTİV VİRUAL TUR</span>
+      <h2 class="font-serif" id="pano-modal-title" style="color: var(--gold-light); margin-bottom: 16px;">360° Otaq Baxışı</h2>
+
+      <div class="panorama-viewer-modal" id="panorama-viewport">
+        <div class="panorama-guide-text">🖱️ Çəkin Və 360° Fırladın (Drag to Rotate 360°)</div>
+        
+        <div class="panorama-track" id="panorama-track">
+          <!-- Panoramic images rendered dynamically via JavaScript -->
+        </div>
+
+        <div class="panorama-overlay-controls">
+          <button class="panorama-btn" onclick="togglePanoramaAutoRotate()">▶ Avto Fırlanma</button>
+          <button class="panorama-btn" onclick="resetPanoramaView()">🔄 Sıfırla</button>
+          <span style="font-size: 0.8rem; color: var(--gold-primary); font-weight: 700;">TAC 360° EXPERIENCE</span>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
+        <span style="font-size: 0.85rem; color: var(--text-muted);" id="pano-modal-specs">180 m² • King Bed • Sea View</span>
+        <button class="btn btn-primary btn-sm" id="pano-modal-book-btn" onclick="proceedFromPanoModal()">Bu Otağı Bron Et</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main JavaScript App Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
